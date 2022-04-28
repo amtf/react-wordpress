@@ -3,6 +3,7 @@ import DispatchContext from "../DispatchContext"
 import StateContext from "../StateContext"
 import { useNavigate } from "react-router-dom"
 import Axios from "axios"
+import Page from "./Page"
 
 function CreatePost() {
   const [title, setTitle] = useState()
@@ -25,7 +26,8 @@ function CreatePost() {
         },
       })
 
-      //   appDispatch({ type: "flashMessage", value: "Congrats, you created a new post." })
+      appDispatch({ type: "flashMessage", value: "Congrats, you created a new post." })
+
       //   navigate(`/post/${response.data}`)
       console.log("New post is created")
     } catch (e) {
@@ -34,7 +36,7 @@ function CreatePost() {
   }
 
   return (
-    <>
+    <Page title="Create Post">
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="post-title" className="text-muted mb-1">
@@ -52,7 +54,7 @@ function CreatePost() {
 
         <button className="btn btn-primary">Save New Post</button>
       </form>
-    </>
+    </Page>
   )
 }
 

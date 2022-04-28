@@ -5,15 +5,18 @@ import DispatchContext from "./DispatchContext"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { useImmerReducer } from "use-immer"
 import { useEffect } from "react"
+import Axios from "axios"
 import Header from "./components/Header"
 import CreatePost from "./components/CreatePost"
-import Axios from "axios"
+
+import FlashMessages from "./components/FlashMessages"
 
 function Main() {
   Axios.defaults.baseURL = "https://www.tinyboy.dev.cc"
 
   const initialState = {
     loggedIn: Boolean(localStorage.getItem("wordpressappToken")),
+    flashMessages: [],
     user: {
       token: localStorage.getItem("wordpressappToken"),
       user_display_name: localStorage.getItem("wordpressappUsername"),
@@ -29,6 +32,9 @@ function Main() {
         return
       case "logout":
         draft.loggedIn = false
+        return
+      case "flashMessage":
+        draft.flashMessages.push(action.value)
         return
     }
   }
@@ -51,6 +57,7 @@ function Main() {
     <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
         <BrowserRouter>
+          <FlashMessages messages={state.flashMessages} />
           <Header />
           <Routes>
             <Route path="/create-post" element={<CreatePost />} />

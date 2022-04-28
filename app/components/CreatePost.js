@@ -28,7 +28,7 @@ function CreatePost() {
 
       appDispatch({ type: "flashMessage", value: "Congrats, you created a new post." })
 
-      //   navigate(`/post/${response.data}`)
+      navigate("/")
       console.log("New post is created")
     } catch (e) {
       console.log("There was a problem.")

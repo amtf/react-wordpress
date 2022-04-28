@@ -4,7 +4,7 @@ import HeaderLoggedOut from "./HeaderLoggedOut"
 import HeaderLoggedIn from "./HeaderLoggedIn"
 import StateContext from "../StateContext"
 
-function Header(props) {
+function Header() {
   const appState = useContext(StateContext)
   return (
     <header className="header-bar bg-primary mb-3">

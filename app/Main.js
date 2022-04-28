@@ -8,7 +8,7 @@ import { useEffect } from "react"
 import Axios from "axios"
 import Header from "./components/Header"
 import CreatePost from "./components/CreatePost"
-import Profile from "./components/Profile"
+import ListPost from "./components/ListPost"
 
 import FlashMessages from "./components/FlashMessages"
 
@@ -62,7 +62,7 @@ function Main() {
           <Header />
           <Routes>
             <Route path="/create-post" element={<CreatePost />} />
-            <Route path="/profile/:username" element={<Profile />} />
+            <Route path="/" element={<ListPost />} />
           </Routes>
         </BrowserRouter>
       </DispatchContext.Provider>
